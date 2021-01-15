@@ -8,6 +8,8 @@ public class TestYohan {
 	
 	public TestYohan() {
 		System.out.println(lpb + 1);
+		//emma
+		System.out.println("emma c'est la chef");
 	}
 
 }
