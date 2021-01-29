@@ -48,6 +48,7 @@ public class Simulation extends JPanel {
 		i = prison.getPrisoner().getPos()[0];
 		j = prison.getPrisoner().getPos()[1];
 		g.fillRect(j*30, i*30, 30, 30);
+		g.dispose();
 	}
 	
 	public static void main (String[] args) {
