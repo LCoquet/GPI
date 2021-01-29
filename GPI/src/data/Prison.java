@@ -1,5 +1,10 @@
 package data;
 
+/*
+ * Contains all the data for a prison, with the map and all the humans.
+ * 
+ */
+
 public class Prison {
 
 	private char map[][] = new char[20][20];
