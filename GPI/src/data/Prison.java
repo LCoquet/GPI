@@ -3,12 +3,13 @@ package data;
 public class Prison {
 
 	private char map[][] = new char[20][20];
-	private int doorPos[];
+	private Guardian guardian1;
+	private Guardian guardian2;
+	private Prisoner prisoner;
 	
-	public Prison(char[][] map, int[] doorPos) {
+	public Prison(char[][] map) {
 		super();
 		this.map = map;
-		this.doorPos = doorPos;
 	}
 	
 	public char[][] getMap() {
@@ -17,11 +18,33 @@ public class Prison {
 	public void setMap(char[][] map) {
 		this.map = map;
 	}
-	public int[] getDoorPos() {
-		return doorPos;
+	public Guardian getGuardian1() {
+		return guardian1;
 	}
-	public void setDoorPos(int[] doorPos) {
-		this.doorPos = doorPos;
+	public void setGuardian1(Guardian guardian1) {
+		this.guardian1 = guardian1;
+	}
+	public Guardian getGuardian2() {
+		return guardian2;
+	}
+	public void setGuardian2(Guardian guardian2) {
+		this.guardian2 = guardian2;
+	}
+	public Prisoner getPrisoner() {
+		return prisoner;
+	}
+	public void setPrisoner(Prisoner prisoner) {
+		this.prisoner = prisoner;
+	}
+	
+	public String toString() {
+		String line = "";
+		for(int i = 0; i < 20; i ++) {
+			for(int j = 0; j < 20; j ++)
+				line += map[i][j] + " ";
+			line += "\n";
+		}
+		return line;
 	}
 	
 }

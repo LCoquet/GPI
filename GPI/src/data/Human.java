@@ -3,7 +3,7 @@ package data;
 public class Human {
 
 	private String name;
-	private int pos[];
+	private int pos[] = new int[2];
 	
 	public Human(String name, int[] pos) {
 		super();
