@@ -12,9 +12,12 @@ import processing.PrisonCreator;
 public class Simulation extends JPanel {
 
 	private static Prison prison;
+	private static Graphics g;
 	
 	public void paintComponent(Graphics g) {
+		this.g = g;
 		super.paintComponent(g);
+		
 		for(int i = 0; i < 20; i ++) {
 			for(int j = 0; j < 20; j ++) {
 				switch(prison.getMap()[i][j]) {
@@ -28,36 +31,38 @@ public class Simulation extends JPanel {
 					g.setColor(Color.GREEN);
 					break;
 				}
-				g.fillRect(j*30, i*30, j*30+30, i*30+30);
+				g.fillRect(j*30, i*30, 30, 30);
 			}
 		}
+		
 		g.setColor(Color.BLUE);
 		int i = prison.getGuardian1().getPos()[0];
 		int j = prison.getGuardian1().getPos()[1];
-		g.fillRect(j*30, i*30, j*30+30, i*30+30);
-		System.out.println(i + " " +j);
+		g.fillRect(j*30, i*30, 30, 30);
 
 		i = prison.getGuardian2().getPos()[0];
 		j = prison.getGuardian2().getPos()[1];
-		g.fillRect(j*30, i*30, j*30+30, i*30+30);
-		System.out.println(i + " " +j);
+		g.fillRect(j*30, i*30, 30, 30);
 		
 		g.setColor(Color.ORANGE);
 		i = prison.getPrisoner().getPos()[0];
 		j = prison.getPrisoner().getPos()[1];
-		g.fillRect(j*30, i*30, j*30+30, i*30+30);
-		System.out.println(i + " " +j);
+		g.fillRect(j*30, i*30, 30, 30);
 	}
 	
 	public static void main (String[] args) {
 		prison = PrisonCreator.creation();
-		JFrame frame = new JFrame("Forme géométrique");
-		JPanel policePanel = new Simulation();
-		frame.add(policePanel);
+		JFrame frame = new JFrame("Guardians");
+		JPanel simulation = new Simulation();
+		frame.add(simulation);
 		frame.setSize(620,640);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
     }
 	
 }
