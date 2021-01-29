@@ -12,10 +12,8 @@ import processing.PrisonCreator;
 public class Simulation extends JPanel {
 
 	private static Prison prison;
-	private static Graphics g;
 	
 	public void paintComponent(Graphics g) {
-		this.g = g;
 		super.paintComponent(g);
 		
 		for(int i = 0; i < 20; i ++) {
