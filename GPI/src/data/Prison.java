@@ -7,9 +7,11 @@ public class Prison {
 	private Guardian guardian2;
 	private Prisoner prisoner;
 	
-	public Prison(char[][] map) {
-		super();
+	public Prison(char[][] map, Guardian guardian1, Guardian guardian2, Prisoner prisoner) {
 		this.map = map;
+		this.guardian1 = guardian1;
+		this.guardian2 = guardian2;
+		this.prisoner = prisoner;
 	}
 	
 	public char[][] getMap() {
