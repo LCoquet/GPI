@@ -1,5 +1,9 @@
 package test;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import data.*;
+import ihm.Simulation;
 import processing.*;
 
 public class TestAlex implements Runnable {
@@ -7,11 +11,10 @@ public class TestAlex implements Runnable {
 	private Guardian g1;
 	private Guardian g2;
 	private Prisoner p1;
+	private Simulation s;
 	
-	public TestAlex() {
-		System.out.println("Bonjour je suis le QA");
-		p = PrisonCreator.creation();
-		System.out.println(p);
+	public TestAlex(Prison p) {
+		this.p = p;
 		g1 = p.getGuardian1();
 		g2 = p.getGuardian2();
 		p1 = p.getPrisoner();
@@ -88,9 +91,9 @@ public class TestAlex implements Runnable {
 	        	System.out.println("Est bloqué");
 	        }
 	}
-	
-	public static void main(String args[]) {
-		Thread t = new Thread(new TestAlex());
-		t.start(); 
-	}
+//	
+//	public static void main(String args[]) {
+//		Thread t = new Thread(new TestAlex());
+//		t.start(); 
+//	}
 }

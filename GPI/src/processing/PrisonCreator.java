@@ -26,7 +26,7 @@ public class PrisonCreator {
 		}
 		Guardian guardian1 = new Guardian("Yohan", new int[] {1, 7});
 		Guardian guardian2 = new Guardian("Alexandre", new int[] {14, 12});
-		Prisoner prisoner = new Prisoner("Léo", new int[] {1, 1});
+		Prisoner prisoner = new Prisoner("Léo", new int[] {10, 10});
 		
 		return new Prison(map, guardian1, guardian2, prisoner);
 		
