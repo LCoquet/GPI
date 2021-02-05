@@ -16,14 +16,15 @@ import processing.PrisonCreator;
 
 public class Simulation extends JPanel implements Runnable{
 
-	private static Prison prison;
+	private Prison prison;
 	private JPanel simulation;
-	MoveVisitor mv = new MoveVisitor();
+	MoveVisitor mv;
 	PaintVisitor pv;
 	
 	public Simulation() {
 		
 		prison = PrisonCreator.creation();
+		mv = new MoveVisitor(prison);
 		
 		JFrame frame = new JFrame("Guardians");
 		simulation = this;
@@ -35,6 +36,7 @@ public class Simulation extends JPanel implements Runnable{
 	}
 	
 	public void paintComponent(Graphics g) {
+		
 		super.paintComponent(g);
 		pv = new PaintVisitor(g);
 		

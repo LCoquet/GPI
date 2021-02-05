@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Prison {
 
-	private static char map[][] = new char[20][20];
+	private char map[][] = new char[20][20];
 	private ArrayList<Human> humans;
 	
 	
@@ -18,7 +18,7 @@ public class Prison {
 		this.humans = humans;
 	}
 	
-	public static char[][] getMap() {
+	public char[][] getMap() {
 		return map;
 	}
 	public void setMap(char[][] map) {

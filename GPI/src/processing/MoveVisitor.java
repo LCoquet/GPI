@@ -6,6 +6,12 @@ import data.Prison;
 import data.Prisoner;
 
 public class MoveVisitor implements Visitor {
+	
+	private Prison prison;
+	
+	public MoveVisitor(Prison prison) {
+		this.prison = prison;
+	}
 
 	public void visit(Prisoner prisoner) {
 		randomMove(prisoner);
@@ -16,7 +22,7 @@ public class MoveVisitor implements Visitor {
 	}
 	
 	public void randomMove(Human h) {
-        int ran =(int) (Math.random()*4);
+        int ran = (int) (Math.random()*4);
         int pos[] = h.getPos();
         int xCheck = pos[0];
         int yCheck = pos[1];
@@ -40,7 +46,7 @@ public class MoveVisitor implements Visitor {
                 break;
         }
 
-        if(Prison.getMap()[xCheck][yCheck] != 'w') {
+        if(prison.getMap()[xCheck][yCheck] != 'w') {
                 pos[0] = xCheck;
                 pos[1] = yCheck;
         }
