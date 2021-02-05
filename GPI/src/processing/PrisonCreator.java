@@ -1,6 +1,9 @@
 package processing;
 
+import java.util.ArrayList;
+
 import data.Guardian;
+import data.Human;
 import data.Prison;
 import data.Prisoner;
 
@@ -24,11 +27,13 @@ public class PrisonCreator {
 					map[i][j] = 'f';
 			}
 		}
-		Guardian guardian1 = new Guardian("Yohan", new int[] {1, 7});
-		Guardian guardian2 = new Guardian("Alexandre", new int[] {14, 12});
-		Prisoner prisoner = new Prisoner("Léo", new int[] {10, 10});
 		
-		return new Prison(map, guardian1, guardian2, prisoner);
+		ArrayList<Human> al = new ArrayList<>();
+		al.add(new Prisoner("Léo", new int[] {10, 10}));
+		al.add(new Guardian("Yohan", new int[] {1, 7}));
+		al.add(new Guardian("Alexandre", new int[] {13, 17}));
+		
+		return new Prison(map, al);
 		
 	}
 	

@@ -1,20 +1,38 @@
 package data;
 
+import java.awt.Graphics;
+
+import processing.MoveVisitor;
+import processing.PaintVisitor;
+
 /*
  * The basis class for humans in the simulation.
- * Guardians and Prisoner are splitted for processing.
+ * Guardians and Prisoner are split for processing.
+ *
+ * The directions are :
+ * 1 : right
+ * 2 : left
+ * 3 : up
+ * 4 : down
  *
  */
 
-public class Human {
+public abstract class Human {
 
 	private String name;
 	private int pos[] = new int[2];
+	private int direction;
+	private int objectivePos[] = new int[2];
 	
 	public Human(String name, int[] pos) {
 		this.name = name;
 		this.pos = pos;
+		
 	}
+	
+	public abstract void accept(MoveVisitor v);
+	
+	public abstract void accept(PaintVisitor v, Graphics g);
 
 	public String getName() {
 		return name;
@@ -22,6 +40,7 @@ public class Human {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int[] getPos() {
 		return pos;
 	}
@@ -29,6 +48,18 @@ public class Human {
 		this.pos = pos;
 	}
 	
+	public int getDirection() {
+		return direction;
+	}
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
 	
-	
+	public int[] getObjectivePos() {
+		return objectivePos;
+	}
+	public void setObjectivePos(int[] objectivePos) {
+		this.objectivePos = objectivePos;
+	}
+		
 }
