@@ -1,9 +1,6 @@
 package data;
 
-import java.awt.Graphics;
-
-import processing.MoveVisitor;
-import processing.PaintVisitor;
+import processing.Visitor;
 
 public class Guardian extends Human {
 
@@ -12,13 +9,8 @@ public class Guardian extends Human {
 	}
 
 	@Override
-	public void accept(MoveVisitor v) {
+	public void accept(Visitor v) {
 		v.visit(this);
-	}
-
-	@Override
-	public void accept(PaintVisitor v, Graphics g) {
-		v.visit(this, g);
 	}
 	
 }

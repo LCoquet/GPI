@@ -19,7 +19,7 @@ public class Simulation extends JPanel implements Runnable{
 	private static Prison prison;
 	private JPanel simulation;
 	MoveVisitor mv = new MoveVisitor();
-	PaintVisitor pv = new PaintVisitor();
+	PaintVisitor pv;
 	
 	public Simulation() {
 		
@@ -36,6 +36,7 @@ public class Simulation extends JPanel implements Runnable{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		pv = new PaintVisitor(g);
 		
 		for(int i = 0; i < 20; i ++) {
 			for(int j = 0; j < 20; j ++) {
@@ -55,7 +56,7 @@ public class Simulation extends JPanel implements Runnable{
 		}
 		
 		for(Human h : prison.getHumans())
-			h.accept(pv, g);
+			h.accept(pv);
 		g.dispose();
 	}
 	

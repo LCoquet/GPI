@@ -5,7 +5,7 @@ import data.Human;
 import data.Prison;
 import data.Prisoner;
 
-public class MoveVisitor {
+public class MoveVisitor implements Visitor {
 
 	public void visit(Prisoner prisoner) {
 		randomMove(prisoner);

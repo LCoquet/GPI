@@ -1,9 +1,6 @@
 package data;
 
-import java.awt.Graphics;
-
-import processing.MoveVisitor;
-import processing.PaintVisitor;
+import processing.Visitor;
 
 /*
  * The basis class for humans in the simulation.
@@ -30,10 +27,8 @@ public abstract class Human {
 		
 	}
 	
-	public abstract void accept(MoveVisitor v);
+	public abstract void accept(Visitor v);
 	
-	public abstract void accept(PaintVisitor v, Graphics g);
-
 	public String getName() {
 		return name;
 	}
