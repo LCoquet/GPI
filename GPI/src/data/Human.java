@@ -19,7 +19,7 @@ public abstract class Human {
 	private String name;
 	private int pos[] = new int[2];
 	private int direction;
-	private int objectivePos[] = new int[2];
+	private int objectivePos[] = null;
 	
 	public Human(String name, int[] pos) {
 		this.name = name;

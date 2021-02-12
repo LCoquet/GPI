@@ -10,7 +10,7 @@ import data.Guardian;
 import data.Human;
 import data.Prison;
 import data.Prisoner;
-import processing.MoveVisitor;
+import processing.HumanMovement;
 import processing.PaintVisitor;
 import processing.PrisonCreator;
 
@@ -19,13 +19,13 @@ public class Simulation extends JPanel implements Runnable{
 
 	private Prison prison;
 	private JPanel simulation;
-	MoveVisitor mv;
+	HumanMovement hm;
 	PaintVisitor pv;
 	
 	public Simulation() {
 		
 		prison = PrisonCreator.creation();
-		mv = new MoveVisitor(prison);
+		hm = new HumanMovement(prison);
 		
 		JFrame frame = new JFrame("Guardians");
 		simulation = this;
@@ -53,7 +53,7 @@ public class Simulation extends JPanel implements Runnable{
 		while(!isFinished()) {
 			try {
 				for(Human h : prison.getHumans()) {
-					h.accept(mv);
+					hm.move(h);
 				}
 				simulation.repaint();
 				Thread.sleep(100);
