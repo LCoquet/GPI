@@ -1,6 +1,5 @@
 package ihm;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -40,22 +39,7 @@ public class Simulation extends JPanel implements Runnable{
 		super.paintComponent(g);
 		pv = new PaintVisitor(g);
 		
-		for(int i = 0; i < 20; i ++) {
-			for(int j = 0; j < 20; j ++) {
-				switch(prison.getMap()[i][j]) {
-				case 'f' :
-					g.setColor(Color.WHITE);
-					break;
-				case 'w' :
-					g.setColor(Color.BLACK);
-					break;
-				case 'd' :
-					g.setColor(Color.GREEN);
-					break;
-				}
-				g.fillRect(j*30, i*30, 30, 30);
-			}
-		}
+		pv.visit(prison.getMap());
 		
 		for(Human h : prison.getHumans())
 			h.accept(pv);
