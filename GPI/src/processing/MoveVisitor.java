@@ -49,6 +49,7 @@ public class MoveVisitor implements Visitor {
         if(prison.getMap()[xCheck][yCheck] != 'w') {
                 pos[0] = xCheck;
                 pos[1] = yCheck;
+                h.setDirection(ran);
         }
 	}
 	

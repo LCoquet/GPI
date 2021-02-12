@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import data.Guardian;
 import data.Human;
@@ -13,6 +14,7 @@ import processing.MoveVisitor;
 import processing.PaintVisitor;
 import processing.PrisonCreator;
 
+@SuppressWarnings("serial")
 public class Simulation extends JPanel implements Runnable{
 
 	private Prison prison;
@@ -29,7 +31,7 @@ public class Simulation extends JPanel implements Runnable{
 		simulation = this;
 		frame.add(simulation);
 		frame.setSize(616,639);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 	}
@@ -38,8 +40,9 @@ public class Simulation extends JPanel implements Runnable{
 		
 		super.paintComponent(g);
 		pv = new PaintVisitor(g);
+		BackgroundPaint bp = new BackgroundPaint(g);
 		
-		pv.visit(prison.getMap());
+		bp.paint(prison.getMap());
 		
 		for(Human h : prison.getHumans())
 			h.accept(pv);
