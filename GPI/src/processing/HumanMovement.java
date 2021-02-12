@@ -81,6 +81,8 @@ public class HumanMovement {
 	        h.setPos(new int[] {xCheck, yCheck});
             h.setDirection(direction);
 		}
+		if(h.getPos()[0] == h.getObjectivePos()[0] && h.getPos()[1] == h.getObjectivePos()[1])
+			h.setObjectivePos(null);
 	}
 	
 }
