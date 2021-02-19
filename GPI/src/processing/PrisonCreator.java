@@ -29,9 +29,18 @@ public class PrisonCreator {
 		}
 		
 		ArrayList<Human> al = new ArrayList<>();
-		al.add(new Prisoner("Léo", new int[] {10, 10}));
+
+		//Guardians will see the prisoner
+		al.add(new Prisoner("Léo", new int[] {10, 18}));
+		
+		//Prioner knows the door's position and will run to it
+//		Prisoner leo = new Prisoner("Léo", new int[] {13, 15});
+//		leo.setObjectivePos(new int[] {13, 0});
+//		al.add(leo);
+		
 		al.add(new Guardian("Yohan", new int[] {1, 7}));
 		al.add(new Guardian("Alexandre", new int[] {13, 17}));
+		
 		
 		return new Prison(map, al);
 		

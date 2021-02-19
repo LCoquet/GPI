@@ -18,6 +18,8 @@ import processing.PrisonCreator;
 @SuppressWarnings("serial")
 public class Simulation extends JPanel implements Runnable{
 
+	private final static int SLEEP_TIME = 200;
+	
 	private Prison prison;
 	private JPanel simulation;
 	HumanMovement hm;
@@ -60,7 +62,7 @@ public class Simulation extends JPanel implements Runnable{
 					hm.move(h);
 				}
 				simulation.repaint();
-				Thread.sleep(100);
+				Thread.sleep(SLEEP_TIME);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

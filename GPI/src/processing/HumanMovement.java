@@ -57,18 +57,18 @@ public class HumanMovement {
 		if(Math.abs(vi) > Math.abs(vj)) {
 			if(vi < 0) {
 				xCheck --;
-				direction = 1;
+				direction = 2;
 			} else {
 				xCheck ++;
-				direction = 0;
+				direction = 3;
 			}
 		} else {
 			if(vj < 0) {
 				yCheck --;
-				direction = 2;
+				direction = 1;
 			} else {
 				yCheck ++;
-				direction = 3;
+				direction = 0;
 			}
 		}
 		
@@ -76,8 +76,33 @@ public class HumanMovement {
 			h.setPos(new int[] {xCheck, yCheck});
             h.setDirection(direction);
 		} else {
-	        xCheck = h.getPos()[0];
-	        yCheck = h.getPos()[1] + 1;
+			if(direction == 0 || direction == 1){
+				if(vj < 0) {
+					xCheck = h.getPos()[0] - 1;
+					yCheck = h.getPos()[1];
+				} else {
+					xCheck = h.getPos()[0] + 1;
+					yCheck = h.getPos()[1];
+				}
+			} else {
+				if(vi < 0) {
+					xCheck = h.getPos()[0];
+					yCheck = h.getPos()[1] - 1;
+				} else {
+					xCheck = h.getPos()[0];
+					yCheck = h.getPos()[1] + 1;
+				}
+			}
+//			else if(direction == 1) {
+//		        xCheck = h.getPos()[0];
+//		        yCheck = h.getPos()[1] - 1;
+//			} else if(direction == 2) {
+//		        xCheck = h.getPos()[0] - 1;
+//		        yCheck = h.getPos()[1];
+//			} else if(direction == 3) {
+//				xCheck = h.getPos()[0] + 1;
+//		        yCheck = h.getPos()[1];
+//			}
 	        h.setPos(new int[] {xCheck, yCheck});
             h.setDirection(direction);
 		}

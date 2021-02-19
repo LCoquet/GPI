@@ -1,11 +1,10 @@
 package processing;
 
-import javax.swing.text.ChangedCharSetException;
-
 import data.Guardian;
 import data.Human;
 import data.Prison;
 import data.Prisoner;
+import processing.message.PrisonerFoundMessage;
 
 public class Detector {
 	
@@ -31,7 +30,7 @@ public class Detector {
 		int pos[] = h.getPos();
 		
 		switch(h.getDirection()) {
-			case 0 :
+			case 3 :
 				for(int i = 0; i < 3; i++) {
 					for(int j = -1; j < 2; j++) {	
 						int checkCase[] = new int[] { pos[0] + 1 + i, pos[1] + j };
@@ -42,7 +41,7 @@ public class Detector {
 				}
 				break;
 			
-			case 1 :
+			case 2 :
 				for(int i = -2 ; i < 1 ; i++) {
 					for(int j = -1; j < 2; j++) {	
 						int checkCase[] = new int[] { pos[0] - 1 + i, pos[1] + j };
@@ -53,7 +52,7 @@ public class Detector {
 				}
 				break;
 				
-			case 2 :
+			case 0 :
 				for(int i = -1; i < 2; i++) {
 					for(int j = 0; j < 3; j++) {	
 						int checkCase[] = new int[] { pos[0] + i, pos[1] + 1 + j };
@@ -64,7 +63,7 @@ public class Detector {
 				}
 				break;
 				
-			case 3 :
+			case 1 :
 				for(int i = -1; i < 2; i++) {
 					for(int j = -2; j < 1; j++) {	
 						int checkCase[] = new int[] { pos[0] + i, pos[1]  - 1 + j };
@@ -103,7 +102,9 @@ public class Detector {
 				if(human.getClass() == Prisoner.class) {
 					if((human.getPos()[0] == checkCase[0]) && (human.getPos()[1] == checkCase[1])) {
 						int[] objectivePos = new int[] {checkCase[0], checkCase[1]} ;
-						h.setObjectivePos(objectivePos);
+						//h.setObjectivePos(objectivePos);
+						PrisonerFoundMessage pfm = new PrisonerFoundMessage(objectivePos, prison);
+						pfm.send();
 					}
 				}
 			}

@@ -48,7 +48,7 @@ public class PaintVisitor implements Visitor {
 //		System.out.println("x : " + pos[0] + " y : " + pos[1]);
 		
 		switch(h.getDirection()) {
-			case 0 :
+			case 3 :
 				for(int i = 0; i < 3; i++) {
 					for(int j = -1; j < 2; j++) {	
 						int checkCase[] = new int[] { pos[0] + 1 + i, pos[1] + j };
@@ -60,7 +60,7 @@ public class PaintVisitor implements Visitor {
 				}
 				break;
 			
-			case 1 :
+			case 2 :
 				for(int i = -2 ; i < 1 ; i++) {
 					for(int j = -1; j < 2; j++) {	
 						int checkCase[] = new int[] { pos[0] - 1 + i, pos[1] + j };
@@ -72,7 +72,7 @@ public class PaintVisitor implements Visitor {
 				}
 				break;
 				
-			case 2 :
+			case 0 :
 				for(int i = -1; i < 2; i++) {
 					for(int j = 0; j < 3; j++) {	
 						int checkCase[] = new int[] { pos[0] + i, pos[1] + 1 + j };
@@ -84,7 +84,7 @@ public class PaintVisitor implements Visitor {
 				}
 				break;
 				
-			case 3 :
+			case 1 :
 				for(int i = -1; i < 2; i++) {
 					for(int j = -2; j < 1; j++) {	
 						int checkCase[] = new int[] { pos[0] + i, pos[1] - 1 + j };
