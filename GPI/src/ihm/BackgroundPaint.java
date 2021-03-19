@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -15,7 +16,7 @@ public class BackgroundPaint {
 	public BackgroundPaint(Graphics g) {
 		this.g = g;
 		try {
-            tiles = ImageIO.read(new File("GPI/ressources/img/tileset.png"));
+            tiles = ImageIO.read(new File("ressources/img/tileset.png"));
         } catch (IOException e) {
             e.printStackTrace();
         } 
@@ -38,5 +39,7 @@ public class BackgroundPaint {
 		else if(c == 'w')
 			x = 60;
 		g.drawImage(tiles, j*30, i*30, j*30+30, i*30+30, x, y, x+30, y+30, null);
+		g.setColor(Color.white);
+		//g.drawString(i + "," + j, j*30, i*30+15);
 	}
 }

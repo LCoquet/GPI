@@ -1,5 +1,7 @@
 package processing;
 
+import java.util.ArrayList;
+
 import data.Guardian;
 import data.Human;
 import data.Prison;
@@ -9,16 +11,17 @@ import processing.message.PrisonerFoundMessage;
 public class Detector {
 	
 	public Prison prison ;
-	public int[] sortie ;
+	//public int[] sortie ;
+	public ArrayList<int[]> sorties;
 	
 	public Detector(Prison prison) {
 		
 		this.prison = prison ;
-		
+		sorties = new ArrayList<int[]>();
 		for(int i = 0; i < 20; i ++) {
 			for(int j = 0; j < 20; j ++) {
 				if(prison.getMap()[i][j] == 'd')
-					sortie = new int[] {i, j};
+					sorties.add(new int[] {i, j});
 			}
 		}
 		
@@ -81,19 +84,22 @@ public class Detector {
 		
 		if(h.getClass() == Prisoner.class)
 		{
-			if((checkCase[0] == sortie[0]) && (checkCase[1] == sortie[1])){
-				int[] objectivePos = new int[] {checkCase[0], checkCase[1]} ;
-				h.setObjectivePos(objectivePos);
-			}
-			else {
-				for(Human human : prison.getHumans()) {
-					if(human.getClass() == Guardian.class) {
-						if((human.getPos()[0] == checkCase[0]) && (human.getPos()[1] == checkCase[1])) {
-							//Direction set->Op
+			for(int[] sortie : sorties) {
+				if((checkCase[0] == sortie[0]) && (checkCase[1] == sortie[1])){
+					int[] objectivePos = new int[] {checkCase[0], checkCase[1]} ;
+					h.setObjectivePos(objectivePos);
+				}
+				else {
+					for(Human human : prison.getHumans()) {
+						if(human.getClass() == Guardian.class) {
+							if((human.getPos()[0] == checkCase[0]) && (human.getPos()[1] == checkCase[1])) {
+								//Direction set->Op
+							}
 						}
 					}
 				}
 			}
+ 			
 		}
 		
 		if(h.getClass() == Guardian.class)
