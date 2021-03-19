@@ -90,28 +90,23 @@ public class Detector {
 					h.setObjectivePos(objectivePos);
 				}
 				else {
-					for(Human human : prison.getHumans()) {
-						if(human.getClass() == Guardian.class) {
-							if((human.getPos()[0] == checkCase[0]) && (human.getPos()[1] == checkCase[1])) {
-								//Direction set->Op
+					for(Guardian g : prison.getGuardians()) {
+							if((g.getPos()[0] == checkCase[0]) && (g.getPos()[1] == checkCase[1])) {
+								//Direction set->Op Release 3
 							}
 						}
 					}
-				}
-			}
- 			
+				}			
 		}
 		
 		if(h.getClass() == Guardian.class)
 		{
-			for(Human human : prison.getHumans()) {
-				if(human.getClass() == Prisoner.class) {
-					if((human.getPos()[0] == checkCase[0]) && (human.getPos()[1] == checkCase[1])) {
-						int[] objectivePos = new int[] {checkCase[0], checkCase[1]} ;
-						//h.setObjectivePos(objectivePos);
-						PrisonerFoundMessage pfm = new PrisonerFoundMessage(objectivePos, prison);
-						pfm.send();
-					}
+			for(Prisoner p: prison.getPrisoners()) {
+				if((p.getPos()[0] == checkCase[0]) && (p.getPos()[1] == checkCase[1])) {
+					int[] objectivePos = new int[] {checkCase[0], checkCase[1]} ;
+					//h.setObjectivePos(objectivePos);
+					PrisonerFoundMessage pfm = new PrisonerFoundMessage(objectivePos, prison);
+					pfm.send();
 				}
 			}
 		}

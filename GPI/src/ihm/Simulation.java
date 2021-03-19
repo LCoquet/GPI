@@ -33,12 +33,19 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	private int victoryTimer = 30000; // 30 Sec = 30 000 ms
 	private boolean timeout = false;
 	
+	private ArrayList<int[]> sorties;
+	private ArrayList<Human> toRemove;
+	
+	private int nbEscaped = 0;
+	private int nbCaught = 0;
+	
 	public Simulation() {
 		
-		prison = PrisonCreator.creation();
+		prison = PrisonCreator.creation(5,5);
 		hm = new HumanMovement(prison);
 		d = new Detector(prison);
-		
+		initSortie();
+		toRemove = new ArrayList<Human>();
 		JFrame frame = new JFrame("Guardians");
 		simulation = this;
 		frame.add(simulation);
@@ -49,6 +56,16 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		
 	}
 	
+	public void initSortie() {
+    	sorties = new ArrayList<int[]>();
+		for(int i = 0; i < 20; i ++) {
+			for(int j = 0; j < 20; j ++) {
+				if(prison.getMap()[i][j] == 'd')
+					sorties.add(new int[] {i, j});
+			}
+		}
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		pv = new PaintVisitor(g);
@@ -56,7 +73,9 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		
 		bp.paint(prison.getMap());
 		
-		for(Human h : prison.getHumans())
+		for(Prisoner h : prison.getPrisoners())
+			h.accept(pv);
+		for(Human h : prison.getGuardians())
 			h.accept(pv);
 		g.dispose();
 	}
@@ -64,10 +83,20 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	public void run() {
 		while(!isFinished() && !timeout) {
 			try {
-				for(Human h : prison.getHumans()) {
+				cleanLists();
+				for(Prisoner h : prison.getPrisoners()) {
 					d.detect(h);
 					hm.move(h);
 				}
+				
+				for(Guardian h : prison.getGuardians()) {
+					d.detect(h);
+					hm.move(h);
+				}
+				
+
+				caught();
+				escape();
 				simulation.repaint();
 				Thread.sleep(SLEEP_TIME);
 				timer++;
@@ -78,49 +107,51 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 				e.printStackTrace();
 			}
 		}
+		if(timeout) {
+			System.out.println("TIME OUT : " + victoryTimer/1000 + "sec");
+		}
+		System.out.println("Nombre d'échapés : " + nbEscaped);
+		System.out.println("Nombre d'attrapés : " + nbCaught);
 		System.out.println("FINI");
 	}
 	
-	private boolean isFinished() {
-		Prisoner p1 = null;
-		Guardian g1 = null;
-		Guardian g2 = null;
-		for(Human h : prison.getHumans()) {
+	public void cleanLists() {
+		for(Human h : toRemove) {
 			if(h.getClass().equals(Prisoner.class))
-				p1 = (Prisoner) h;
-			else if (g1 == null)
-				g1 = (Guardian) h;
+				prison.getPrisoners().remove(h);
 			else
-				g2 = (Guardian) h;
-		}
-		return(caught(g1, g2, p1) || escape(p1));
+				prison.getGuardians().remove(h);
+		}	
 	}
-	
-	public boolean caught (Guardian g1, Guardian g2, Prisoner p1) {
-        if ((g1.getPos()[0] == p1.getPos()[0] && g1.getPos()[1] == p1.getPos()[1]) || (g2.getPos()[0] == p1.getPos()[0] && g2.getPos()[1] == p1.getPos()[1]) ) {
-        	System.out.println("ATTRAPED");
-            return true;
-            
-        }else {
-            return false;
-        }
-    }
-	
-    public boolean escape (Prisoner p1) {
-    	ArrayList<int[]> sorties = new ArrayList<int[]>();
-		for(int i = 0; i < 20; i ++) {
-			for(int j = 0; j < 20; j ++) {
-				if(prison.getMap()[i][j] == 'd')
-					sorties.add(new int[] {i, j});
-			}
-		}
-		for(int[] sortie : sorties) {
-	        if((p1.getPos()[0] == sortie[0] && p1.getPos()[1] == sortie[1])) {
-	        	System.out.println("ECHAPED");
-	            return true;
-	        }
+	private boolean isFinished() {
+		if(prison.getPrisoners().size() == 0) {
+			return true;
 		}
 		return false;
+	}
+	
+	public void caught () {
+		for(Guardian g : prison.getGuardians()) {
+				for(Prisoner p : prison.getPrisoners()) {
+					if (g.getPos()[0] == p.getPos()[0] && g.getPos()[1] == p.getPos()[1]) {
+			        	toRemove.add(p);
+			        	System.out.println("CAUGHT");
+			        	nbCaught++;
+			        }
+				}
+		}
+    }
+	
+    public void escape () {
+    	for(Prisoner p : prison.getPrisoners()) {
+    		for(int[] sortie : sorties) {
+    	        if((p.getPos()[0] == sortie[0] && p.getPos()[1] == sortie[1])) {
+    	        	toRemove.add(p);
+    	        	System.out.println("ESCAPED");
+    	        	nbEscaped++;
+    	        }
+    		}
+    	}
 
     }
     
