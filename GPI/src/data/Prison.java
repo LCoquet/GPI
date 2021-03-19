@@ -10,12 +10,11 @@ import java.util.ArrayList;
 public class Prison {
 
 	private char map[][] = new char[20][20];
-	private ArrayList<Human> humans;
+	private ArrayList<Guardian> guardians = new ArrayList<Guardian>();
+	private ArrayList<Prisoner> prisoners = new ArrayList<Prisoner>();
 	
-	
-	public Prison(char[][] map, ArrayList<Human> humans) {
+	public Prison(char[][] map) {
 		this.map = map;
-		this.humans = humans;
 	}
 	
 	public char[][] getMap() {
@@ -24,11 +23,21 @@ public class Prison {
 	public void setMap(char[][] map) {
 		this.map = map;
 	}	
-	public ArrayList<Human> getHumans() {
-		return humans;
+
+	public ArrayList<Guardian> getGuardians() {
+		return guardians;
 	}
-	public void setHumans(ArrayList<Human> humans) {
-		this.humans = humans;
+
+	public void setGuardians(ArrayList<Guardian> guardians) {
+		this.guardians = guardians;
+	}
+
+	public ArrayList<Prisoner> getPrisoners() {
+		return prisoners;
+	}
+
+	public void setPrisoners(ArrayList<Prisoner> prisoners) {
+		this.prisoners = prisoners;
 	}
 
 	public String toString() {

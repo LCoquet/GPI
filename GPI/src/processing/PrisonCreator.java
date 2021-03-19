@@ -1,8 +1,5 @@
 package processing;
 
-import java.util.ArrayList;
-
-import data.Human;
 import data.Prison;
 import processing.simulationcreation.HumanCreation;
 
@@ -45,7 +42,7 @@ public class PrisonCreator {
 			}
 		}
 		
-		Prison prison = new Prison(map, new ArrayList<Human>());
+		Prison prison = new Prison(map);
 		HumanCreation.create(5, 5, prison);
 		return prison;
 		
