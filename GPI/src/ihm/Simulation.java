@@ -39,14 +39,13 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	private int nbEscaped = 0;
 	private int nbCaught = 0;
 	
-	public Simulation() {
+	public Simulation(JFrame frame, int guardianAmount, int prisonerAmount) {
 		
-		prison = PrisonCreator.creation(5,5);
+		prison = PrisonCreator.creation(guardianAmount, prisonerAmount);
 		hm = new HumanMovement(prison);
 		d = new Detector(prison);
 		initSortie();
 		toRemove = new ArrayList<Human>();
-		JFrame frame = new JFrame("Guardians");
 		simulation = this;
 		frame.add(simulation);
 		frame.setSize(616,639);
@@ -162,11 +161,11 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		} 
     }
 	
-	public static void main (String[] args) {
-		Simulation sim = new Simulation();
-		Thread t = new Thread(sim);
-		t.start();
-    }
+//	public static void main (String[] args) {
+//		Simulation sim = new Simulation();
+//		Thread t = new Thread(sim);
+//		t.start();
+//    }
 
 	@Override
 	public void keyTyped(KeyEvent e) {
