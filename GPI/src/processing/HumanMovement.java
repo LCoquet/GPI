@@ -80,29 +80,35 @@ public class HumanMovement {
 				if(vj < 0) {
 					xCheck = h.getPos()[0] - 1;
 					yCheck = h.getPos()[1];
+					if(prison.getMap()[xCheck][yCheck] != 'w') {
+						xCheck = h.getPos()[0] + 1;
+						yCheck = h.getPos()[1];
+					}
 				} else {
 					xCheck = h.getPos()[0] + 1;
 					yCheck = h.getPos()[1];
+					if(prison.getMap()[xCheck][yCheck] != 'w') {
+						xCheck = h.getPos()[0] - 1;
+						yCheck = h.getPos()[1];
+					}
 				}
 			} else {
 				if(vi < 0) {
 					xCheck = h.getPos()[0];
 					yCheck = h.getPos()[1] - 1;
+					if(prison.getMap()[xCheck][yCheck] != 'w') {
+						xCheck = h.getPos()[0];
+						yCheck = h.getPos()[1] + 1;
+					}
 				} else {
 					xCheck = h.getPos()[0];
 					yCheck = h.getPos()[1] + 1;
+					if(prison.getMap()[xCheck][yCheck] != 'w') {
+						xCheck = h.getPos()[0];
+						yCheck = h.getPos()[1] - 1;
+					}
 				}
 			}
-//			else if(direction == 1) {
-//		        xCheck = h.getPos()[0];
-//		        yCheck = h.getPos()[1] - 1;
-//			} else if(direction == 2) {
-//		        xCheck = h.getPos()[0] - 1;
-//		        yCheck = h.getPos()[1];
-//			} else if(direction == 3) {
-//				xCheck = h.getPos()[0] + 1;
-//		        yCheck = h.getPos()[1];
-//			}
 	        h.setPos(new int[] {xCheck, yCheck});
             h.setDirection(direction);
 		}
