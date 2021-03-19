@@ -5,7 +5,7 @@ import processing.simulationcreation.HumanCreation;
 
 public class PrisonCreator {
 
-	public static Prison creation() {
+	public static Prison creation(int guardianAmount, int prisonerAmount) {
 		
 		char[][] map = new char[20][20];
 		
@@ -43,7 +43,7 @@ public class PrisonCreator {
 		}
 		
 		Prison prison = new Prison(map);
-		HumanCreation.create(5, 5, prison);
+		HumanCreation.create(guardianAmount, prisonerAmount, prison);
 		return prison;
 		
 	}
