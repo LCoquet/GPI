@@ -41,10 +41,11 @@ public class HumanMovement {
             	xCheck++;
                 break;
         }
-
-        if(prison.getMap()[xCheck][yCheck] != 'w') {
-	            h.setPos(new int[] {xCheck, yCheck});
-                h.setDirection(direction);
+        if(!oob(xCheck, yCheck)) {
+	        if(prison.getMap()[xCheck][yCheck] != 'w') {
+		            h.setPos(new int[] {xCheck, yCheck});
+	                h.setDirection(direction);
+	        }
         }
 	}
 	
@@ -72,56 +73,58 @@ public class HumanMovement {
 			}
 		}
 		
-		if(!isAWall(xCheck, yCheck)) {
-			h.setPos(new int[] {xCheck, yCheck});
-            h.setDirection(direction);
-		} else {
-			if(direction == 0 || direction == 1){
-				if(vj < 0) {
-					xCheck = h.getPos()[0] - 1;
-					yCheck = h.getPos()[1];
-					if(!oob(xCheck, yCheck))
-						if(isAWall(xCheck, yCheck)) {
-							xCheck = h.getPos()[0] + 1;
-							yCheck = h.getPos()[1];
-						}
-				} else {
-					xCheck = h.getPos()[0] + 1;
-					yCheck = h.getPos()[1];
-					if(!oob(xCheck, yCheck))
-						if(isAWall(xCheck, yCheck)) {
-							xCheck = h.getPos()[0] - 1;
-							yCheck = h.getPos()[1];
-						}
-				}
+		if(!oob(xCheck, yCheck)) {
+			if(!isAWall(xCheck, yCheck)) {
+				h.setPos(new int[] {xCheck, yCheck});
+	            h.setDirection(direction);
 			} else {
-				if(vi < 0) {
-					xCheck = h.getPos()[0];
-					yCheck = h.getPos()[1] - 1;
-					if(!oob(xCheck, yCheck))
-						if(isAWall(xCheck, yCheck)) {
-							xCheck = h.getPos()[0];
-							yCheck = h.getPos()[1] + 1;
-						}
+				if(direction == 0 || direction == 1){
+					if(vj < 0) {
+						xCheck = h.getPos()[0] - 1;
+						yCheck = h.getPos()[1];
+						if(!oob(xCheck, yCheck))
+							if(isAWall(xCheck, yCheck)) {
+								xCheck = h.getPos()[0] + 1;
+								yCheck = h.getPos()[1];
+							}
+					} else {
+						xCheck = h.getPos()[0] + 1;
+						yCheck = h.getPos()[1];
+						if(!oob(xCheck, yCheck))
+							if(isAWall(xCheck, yCheck)) {
+								xCheck = h.getPos()[0] - 1;
+								yCheck = h.getPos()[1];
+							}
+					}
 				} else {
-					xCheck = h.getPos()[0];
-					yCheck = h.getPos()[1] + 1;
-					if(!oob(xCheck, yCheck))
-						if(isAWall(xCheck, yCheck)) {
-							xCheck = h.getPos()[0];
-							yCheck = h.getPos()[1] - 1;
-						}
+					if(vi < 0) {
+						xCheck = h.getPos()[0];
+						yCheck = h.getPos()[1] - 1;
+						if(!oob(xCheck, yCheck))
+							if(isAWall(xCheck, yCheck)) {
+								xCheck = h.getPos()[0];
+								yCheck = h.getPos()[1] + 1;
+							}
+					} else {
+						xCheck = h.getPos()[0];
+						yCheck = h.getPos()[1] + 1;
+						if(!oob(xCheck, yCheck))
+							if(isAWall(xCheck, yCheck)) {
+								xCheck = h.getPos()[0];
+								yCheck = h.getPos()[1] - 1;
+							}
+					}
 				}
+		        h.setPos(new int[] {xCheck, yCheck});
+	            h.setDirection(direction);
 			}
-	        h.setPos(new int[] {xCheck, yCheck});
-            h.setDirection(direction);
 		}
 		if(h.getPos()[0] == h.getObjectivePos()[0] && h.getPos()[1] == h.getObjectivePos()[1])
 			h.setObjectivePos(null);
 	}
 	
 	private boolean oob(int posX, int posY) {
-		return posX < 0 && posX >= 20 && posY < 0 && posY >= 20;
+		return posX < 0 || posX >= 20 || posY < 0 || posY >= 20;
 	}
 	
 	private boolean isAWall(int posX, int posY) {
