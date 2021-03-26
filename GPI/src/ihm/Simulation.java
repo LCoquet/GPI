@@ -178,5 +178,13 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public Prison getPrison() {
+		return prison;
+	}
+
+	public void setPrison(Prison prison) {
+		this.prison = prison;
+	}
 	
 }

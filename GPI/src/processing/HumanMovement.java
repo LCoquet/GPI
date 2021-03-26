@@ -41,10 +41,11 @@ public class HumanMovement {
             	xCheck++;
                 break;
         }
-
-        if(prison.getMap()[xCheck][yCheck] != 'w') {
-	            h.setPos(new int[] {xCheck, yCheck});
-                h.setDirection(direction);
+        if(!oob(xCheck, yCheck)) {
+	        if(prison.getMap()[xCheck][yCheck] != 'w') {
+		            h.setPos(new int[] {xCheck, yCheck});
+	                h.setDirection(direction);
+	        }
         }
 	}
 	
@@ -123,7 +124,7 @@ public class HumanMovement {
 	}
 	
 	private boolean oob(int posX, int posY) {
-		return posX < 0 && posX >= 20 && posY < 0 && posY >= 20;
+		return posX < 0 || posX >= 20 || posY < 0 || posY >= 20;
 	}
 	
 	private boolean isAWall(int posX, int posY) {
