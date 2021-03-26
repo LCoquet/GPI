@@ -2,16 +2,30 @@ package time;
 
 import time.Time;
 
-public class RealTime {
+public class RealTime implements Runnable{
 
 	private Time hour = new Time(0, 1, 0);
 	private Time minute = new Time(0, 15, 0);
 	private Time second = new Time(0, 59, 0);
 	
+	private boolean running = true;
+	
 	public void init() {
 		hour.setValue(0);
 		minute.setValue(0);
 		second.setValue(0);
+	}
+	
+	public void run() {
+		while(running) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			increment();
+		}
+		
 	}
 	
 	public void increment() {
@@ -55,5 +69,7 @@ public class RealTime {
 		String heure = RealTime.transform(getHour().getValue()) + " : "+ RealTime.transform(getMinute().getValue()) + " : " + RealTime.transform(getSecond().getValue());
 		return heure;
 	}
+
+
 	
 }

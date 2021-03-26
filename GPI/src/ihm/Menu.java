@@ -8,6 +8,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-public class Menu extends JPanel {
+public class Menu extends JPanel{
 	
 	private JFrame frame ;
 	private JPanel menuPanel ;
@@ -34,7 +36,7 @@ public class Menu extends JPanel {
 	private JButton buttonAddG ;
 	private JButton buttonSuppG ;
 	private JLabel printNbP ;
-	private JLabel ImgP;
+	private JLabel ImgP ;
 	
 	private JLabel printTitle ;
 	
@@ -58,8 +60,8 @@ public class Menu extends JPanel {
 		nbrPrisoner = 1 ;
 		
 		try {
-			add = ImageIO.read(new File("GPI/ressources/img/plus.png"));
-			supp = ImageIO.read(new File("GPI/ressources/img/minus.png"));
+			add = ImageIO.read(new File("ressources/img/plus.png"));
+			supp = ImageIO.read(new File("ressources/img/minus.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

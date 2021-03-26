@@ -20,7 +20,7 @@ public class PaintVisitor implements Visitor {
 	public PaintVisitor(Graphics g) {
 		this.g = g;
 		try {
-            humans = ImageIO.read(new File("GPI/ressources/img/humans.png"));
+            humans = ImageIO.read(new File("ressources/img/humans.png"));
         } catch (IOException e) {
             e.printStackTrace();
         } 

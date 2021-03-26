@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,6 +18,7 @@ import processing.Detector;
 import processing.HumanMovement;
 import processing.PaintVisitor;
 import processing.PrisonCreator;
+import time.RealTime;
 
 @SuppressWarnings("serial")
 public class Simulation extends JPanel implements Runnable, KeyListener{
@@ -39,8 +41,13 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	private int nbEscaped = 0;
 	private int nbCaught = 0;
 	
+	/* Chronometer */
+	private RealTime clock = new RealTime();
+	private Thread t = new Thread(clock);
+	
+	private Font categoryFont = new Font("Arial", Font.BOLD, 22);
+	
 	public Simulation(JFrame frame, int guardianAmount, int prisonerAmount) {
-		
 		prison = PrisonCreator.creation(guardianAmount, prisonerAmount);
 		hm = new HumanMovement(prison);
 		d = new Detector(prison);
@@ -52,7 +59,11 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.addKeyListener(this); 
-		
+		startTimer();
+	}
+	
+	public void startTimer() {
+		t.start();
 	}
 	
 	public void initSortie() {
@@ -71,12 +82,37 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		BackgroundPaint bp = new BackgroundPaint(g);
 		
 		bp.paint(prison.getMap());
-		
+        g.setFont(categoryFont);
+        /* Timer */
+        String chrono = writeTimer();
+
+        g.drawString(chrono, 255, 23);
+        g.drawString("ESCAPED : " + nbEscaped, 0 , 23);
+        g.drawString("CAUGHT : " + nbCaught, 450, 23);
 		for(Prisoner h : prison.getPrisoners())
 			h.accept(pv);
 		for(Human h : prison.getGuardians())
 			h.accept(pv);
 		g.dispose();
+	}
+	
+	public String writeTimer() {
+        int hours = clock.getHour().getValue();
+        int minutes = clock.getMinute().getValue();
+        int seconds = clock.getSecond().getValue();
+    	String hoursExt = "0";
+    	String minutesExt = "0";
+    	String secondsExt = "0";
+        if(hours >= 10) {
+        	hoursExt = "";
+        }
+        if(minutes >= 10) {
+        	minutesExt = "";
+        }
+        if(seconds >= 10) {
+        	secondsExt = "";
+        }
+        return hoursExt + hours + ":" + minutesExt+ minutes + ":" + secondsExt+seconds;
 	}
 	
 	public void run() {
@@ -155,6 +191,7 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
     }
     
     public void keyPressed(KeyEvent k) {
+    	System.out.println("Pressed");
     	if (k.getKeyCode() == KeyEvent.VK_ESCAPE) {
     		System.out.println("Exit Program");
     		System.exit(0);
