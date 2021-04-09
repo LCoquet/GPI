@@ -23,6 +23,13 @@ import processing.PaintVisitor;
 import processing.PrisonCreator;
 import time.RealTime;
 
+/**
+ * @brief main class that manages the game simulation thread 
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
+
 @SuppressWarnings("serial")
 public class Simulation extends JPanel implements Runnable, KeyListener{
 	

@@ -8,6 +8,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * @brief class that draws the background of the prison with a tileset system
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
+
 public class BackgroundPaint {
 
 	private Graphics g;
