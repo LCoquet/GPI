@@ -228,7 +228,7 @@ public class Menu extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(nbrGuardian > 0) {
+			if(nbrGuardian > 1) {
 				nbrGuardian -- ;
 //				System.out.println(nbrGuardian);
 				printNbG.setText("Guardian : \n" + Integer.toString(nbrGuardian));
@@ -242,7 +242,7 @@ public class Menu extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(nbrPrisoner > 0) {
+			if(nbrPrisoner > 1) {
 				nbrPrisoner -- ;
 //				System.out.println(nbrPrisoner);
 				printNbP.setText("Prisoner : \n" + Integer.toString(nbrPrisoner));
