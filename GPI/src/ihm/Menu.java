@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -44,6 +45,8 @@ public class Menu extends JPanel{
 	
 	private Image add ;
 	private Image supp ;
+	private Image human ;
+	private Image background ;
 	
 	//Variable a send
 	
@@ -54,14 +57,16 @@ public class Menu extends JPanel{
 	
 	public Menu(){
 		frame = new JFrame(TITLE);
-		menuPanel = new JPanel();
+		menuPanel = this ;
 		
 		nbrGuardian = 1 ;
 		nbrPrisoner = 1 ;
 		
 		try {
-			add = ImageIO.read(new File("ressources/img/plus.png"));
-			supp = ImageIO.read(new File("ressources/img/minus.png"));
+			add = ImageIO.read(new File("GPI/ressources/img/plus.png"));
+			supp = ImageIO.read(new File("GPI/ressources/img/minus.png"));
+			human = ImageIO.read(new File("GPI/ressources/img/humans.png"));
+			background = ImageIO.read(new File("GPI/ressources/img/Background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -72,6 +77,16 @@ public class Menu extends JPanel{
 		frame.setSize(616,639);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		g.setColor(Color.WHITE);
+		g.drawImage(background, 0, 0, frame.getSize().width, frame.getSize().height, 0, 0, frame.getSize().width, frame.getSize().height, null);
+		g.drawImage(human, 285, 200, 315, 230, 30, 0, 60, 30, null);
+		g.drawImage(human, 285, 350, 315, 380, 0, 0, 30, 30, null);
 	}
 	
 	
@@ -203,7 +218,7 @@ public class Menu extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(nbrGuardian > 1) {
+			if(nbrGuardian > 0) {
 				nbrGuardian -- ;
 //				System.out.println(nbrGuardian);
 				printNbG.setText("Guardian : \n" + Integer.toString(nbrGuardian));
@@ -217,7 +232,7 @@ public class Menu extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(nbrPrisoner > 1) {
+			if(nbrPrisoner > 0) {
 				nbrPrisoner -- ;
 //				System.out.println(nbrPrisoner);
 				printNbP.setText("Prisoner : \n" + Integer.toString(nbrPrisoner));
