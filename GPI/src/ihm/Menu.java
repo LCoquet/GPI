@@ -63,7 +63,6 @@ public class Menu extends JPanel{
 			add = ImageIO.read(new File("ressources/img/plus.png"));
 			supp = ImageIO.read(new File("ressources/img/minus.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

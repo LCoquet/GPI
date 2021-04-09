@@ -4,6 +4,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -37,6 +40,8 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	
 	private ArrayList<int[]> sorties;
 	private ArrayList<Human> toRemove;
+	
+	private BufferedWriter out;
 	
 	private int nbEscaped = 0;
 	private int nbCaught = 0;
@@ -116,31 +121,37 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	}
 	
 	public void run() {
-		while(!isFinished() && !timeout) {
-			try {
-				cleanLists();
-				for(Prisoner h : prison.getPrisoners()) {
-					d.detect(h);
-					hm.move(h);
+		try {
+			out = new BufferedWriter(new FileWriter("log.txt"));
+			while(!isFinished() && !timeout) {
+				try {
+					cleanLists();
+					for(Prisoner h : prison.getPrisoners()) {
+						d.detect(h, out);
+						hm.move(h);
+					}
+					
+					for(Guardian h : prison.getGuardians()) {
+						d.detect(h, out);
+						hm.move(h);
+					}
+	
+					caught();
+					escape();
+					simulation.repaint();
+					Thread.sleep(SLEEP_TIME);
+					timer++;
+					if(timer % (victoryTimer/SLEEP_TIME) == 0) { // If the prisoner wasn't caught for "victoryTimer" ms
+						timeout = true;
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-				
-				for(Guardian h : prison.getGuardians()) {
-					d.detect(h);
-					hm.move(h);
-				}
-				
-
-				caught();
-				escape();
-				simulation.repaint();
-				Thread.sleep(SLEEP_TIME);
-				timer++;
-				if(timer % (victoryTimer/SLEEP_TIME) == 0) { // If the prisoner wasn't caught for "victoryTimer" ms
-					timeout = true;
-				}
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
+			out.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		if(timeout) {
 			System.out.println("TIME OUT : " + victoryTimer/1000 + "sec");
@@ -168,7 +179,7 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	public void caught () {
 		for(Guardian g : prison.getGuardians()) {
 				for(Prisoner p : prison.getPrisoners()) {
-					if (g.getPos()[0] == p.getPos()[0] && g.getPos()[1] == p.getPos()[1]) {
+					if (g.getPos()[0] == p.getPos()[0] && g.getPos()[1] == p.getPos()[1] && !toRemove.contains(p)) {
 			        	toRemove.add(p);
 			        	System.out.println("CAUGHT");
 			        	nbCaught++;
@@ -197,12 +208,6 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
     		System.exit(0);
 		} 
     }
-	
-//	public static void main (String[] args) {
-//		Simulation sim = new Simulation();
-//		Thread t = new Thread(sim);
-//		t.start();
-//    }
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -222,6 +227,14 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 
 	public void setPrison(Prison prison) {
 		this.prison = prison;
+	}
+	
+	public Detector getDetector() {
+		return d;
+	}
+	
+	public void setDetector(Detector d) {
+		this.d = d;
 	}
 	
 }

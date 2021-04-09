@@ -11,6 +11,7 @@ public class PrisonerFoundMessage extends Message<int[]> {
 
 	@Override
 	public void send() {
+		
 		for(Guardian h : getPrison().getGuardians())
 			h.setObjectivePos(getContent());
 	}

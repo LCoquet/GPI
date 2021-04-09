@@ -1,5 +1,8 @@
 package processing;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import data.Guardian;
@@ -13,9 +16,15 @@ public class Detector {
 	public Prison prison ;
 	//public int[] sortie ;
 	public ArrayList<int[]> sorties;
+	private BufferedWriter bw;
 	
 	public Detector(Prison prison) {
 		
+		try {
+			bw = new BufferedWriter(new FileWriter("log.txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 		this.prison = prison ;
 		sorties = new ArrayList<int[]>();
 		for(int i = 0; i < 20; i ++) {
@@ -24,11 +33,10 @@ public class Detector {
 					sorties.add(new int[] {i, j});
 			}
 		}
-		
 	}
 	
 	
-	public void detect(Human h) {
+	public void detect(Human h, BufferedWriter out) {
 		
 		int pos[] = h.getPos();
 		
@@ -38,7 +46,7 @@ public class Detector {
 					for(int j = -1; j < 2; j++) {	
 						int checkCase[] = new int[] { pos[0] + 1 + i, pos[1] + j };
 						if(((checkCase[0] >= 0) && (checkCase[0] < 20)) && ((checkCase[1] >= 0) && (checkCase[1] < 20))) {
-							checker(h, checkCase);
+							checker(h, checkCase, out);
 						}		
 					}
 				}
@@ -49,7 +57,7 @@ public class Detector {
 					for(int j = -1; j < 2; j++) {	
 						int checkCase[] = new int[] { pos[0] - 1 + i, pos[1] + j };
 						if(((checkCase[0] >= 0) && (checkCase[0] < 20)) && ((checkCase[1] >= 0) && (checkCase[1] < 20))) {
-							checker(h, checkCase);
+							checker(h, checkCase, out);
 						}	
 					}
 				}
@@ -60,7 +68,7 @@ public class Detector {
 					for(int j = 0; j < 3; j++) {	
 						int checkCase[] = new int[] { pos[0] + i, pos[1] + 1 + j };
 						if(((checkCase[0] >= 0) && (checkCase[0] < 20)) && ((checkCase[1] >= 0) && (checkCase[1] < 20))) {
-							checker(h, checkCase);
+							checker(h, checkCase, out);
 						}
 					}
 				}
@@ -71,7 +79,7 @@ public class Detector {
 					for(int j = -2; j < 1; j++) {	
 						int checkCase[] = new int[] { pos[0] + i, pos[1]  - 1 + j };
 						if(((checkCase[0] >= 0) && (checkCase[0] < 20)) && ((checkCase[1] >= 0) && (checkCase[1] < 20))) {
-							checker(h, checkCase);
+							checker(h, checkCase, out);
 						}		
 					}
 				}
@@ -80,7 +88,7 @@ public class Detector {
 		
 	}
 	
-	public void checker(Human h, int checkCase[]) {
+	public void checker(Human h, int checkCase[], BufferedWriter out) {
 		
 		if(h.getClass() == Prisoner.class)
 		{
@@ -106,7 +114,13 @@ public class Detector {
 					int[] objectivePos = new int[] {checkCase[0], checkCase[1]} ;
 					//h.setObjectivePos(objectivePos);
 					PrisonerFoundMessage pfm = new PrisonerFoundMessage(objectivePos, prison);
-					pfm.send();
+					pfm.send();	
+			        try {
+						out.write("Prisoner found at position : " + objectivePos[0] + "," + objectivePos[1] + "\n");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
 				}
 			}
 		}
