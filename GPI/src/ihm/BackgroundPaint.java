@@ -16,7 +16,7 @@ public class BackgroundPaint {
 	public BackgroundPaint(Graphics g) {
 		this.g = g;
 		try {
-            tiles = ImageIO.read(new File("GPI/ressources/img/tileset.png"));
+            tiles = ImageIO.read(new File("ressources/img/tileset.png"));
         } catch (IOException e) {
             e.printStackTrace();
         } 

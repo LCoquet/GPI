@@ -63,10 +63,10 @@ public class Menu extends JPanel{
 		nbrPrisoner = 1 ;
 		
 		try {
-			add = ImageIO.read(new File("GPI/ressources/img/plus.png"));
-			supp = ImageIO.read(new File("GPI/ressources/img/minus.png"));
-			human = ImageIO.read(new File("GPI/ressources/img/humans.png"));
-			background = ImageIO.read(new File("GPI/ressources/img/Background.png"));
+			add = ImageIO.read(new File("ressources/img/plus.png"));
+			supp = ImageIO.read(new File("ressources/img/minus.png"));
+			human = ImageIO.read(new File("ressources/img/humans.png"));
+			background = ImageIO.read(new File("ressources/img/Background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

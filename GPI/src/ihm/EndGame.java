@@ -37,10 +37,10 @@ public class EndGame extends JPanel {
 	public EndGame(JFrame f, int nbCaught, int nbEscaped, String time) {
 		
 		try {
-			add = ImageIO.read(new File("GPI/ressources/img/plus.png"));
-			supp = ImageIO.read(new File("GPI/ressources/img/minus.png"));
-			human = ImageIO.read(new File("GPI/ressources/img/humans.png"));
-			background = ImageIO.read(new File("GPI/ressources/img/Background.png"));
+			add = ImageIO.read(new File("ressources/img/plus.png"));
+			supp = ImageIO.read(new File("ressources/img/minus.png"));
+			human = ImageIO.read(new File("ressources/img/humans.png"));
+			background = ImageIO.read(new File("ressources/img/Background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
