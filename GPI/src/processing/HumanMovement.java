@@ -3,6 +3,12 @@ package processing;
 import data.Human;
 import data.Prison;
 
+/**
+ * @brief Treatment Class for human's movement and vision
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class HumanMovement {
 
 	private Prison prison;

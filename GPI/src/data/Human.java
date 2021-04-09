@@ -12,6 +12,10 @@ import processing.Visitor;
  * 3 : up
  * 4 : down
  *
+ * @brief Human Data class
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
  */
 
 public abstract class Human {

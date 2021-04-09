@@ -11,6 +11,12 @@ import data.Prison;
 import data.Prisoner;
 import processing.message.PrisonerFoundMessage;
 
+/**
+ *  @brief Treatment class for the intelligence of the characters
+ * 
+ *  @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class Detector {
 	
 	public Prison prison ;

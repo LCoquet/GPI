@@ -12,6 +12,12 @@ import data.Guardian;
 import data.Human;
 import data.Prisoner;
 
+/**
+ * @brief Visitor to paint the elements of the prison
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class PaintVisitor implements Visitor {
 
 	private Graphics g;

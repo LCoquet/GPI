@@ -2,11 +2,12 @@ package data;
 
 import java.util.ArrayList;
 
-/*
- * Contains all the data for a prison, with the map and all the humans.
+/**
+ * @brief Prison Data Class
  * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
  */
-
 public class Prison {
 
 	private char map[][] = new char[20][20];

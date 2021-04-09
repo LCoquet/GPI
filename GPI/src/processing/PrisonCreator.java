@@ -3,6 +3,12 @@ package processing;
 import data.Prison;
 import processing.simulationcreation.HumanCreation;
 
+/**
+ * @brief Class to create the prison 
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class PrisonCreator {
 
 	public static Prison creation(int guardianAmount, int prisonerAmount) {

@@ -2,6 +2,13 @@ package processing.message;
 
 import data.Prison;
 
+
+/**
+ * @brief Abstract class for the communication of Humans
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public abstract class Message<T> {
 
 	private T content;

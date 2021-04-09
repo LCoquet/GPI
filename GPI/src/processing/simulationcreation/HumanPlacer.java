@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import data.Prison;
 
+/**
+ * @brief Treatment Class to place all humans on the prison
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class HumanPlacer {
 
 	private int placed = 0;

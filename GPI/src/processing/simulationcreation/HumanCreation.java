@@ -6,6 +6,12 @@ import data.Guardian;
 import data.Prison;
 import data.Prisoner;
 
+/**
+ * @brief Treatment Class to create all the characters
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class HumanCreation {
 
 	public static void create(int guardianAmount, int prisonerAmount, Prison prison){
