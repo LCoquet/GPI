@@ -25,6 +25,8 @@ import time.RealTime;
 
 @SuppressWarnings("serial")
 public class Simulation extends JPanel implements Runnable, KeyListener{
+	
+	JFrame frame ;
 
 	private final static int SLEEP_TIME = 200;
 	
@@ -35,7 +37,7 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	Detector d ;
 	
 	private int timer = 0;
-	private int victoryTimer = 30000; // 30 Sec = 30 000 ms
+	private int victoryTimer = 60000; // 30 Sec = 30 000 ms
 	private boolean timeout = false;
 	
 	private ArrayList<int[]> sorties;
@@ -59,11 +61,13 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		initSortie();
 		toRemove = new ArrayList<Human>();
 		simulation = this;
-		frame.add(simulation);
-		frame.setSize(616,639);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.addKeyListener(this); 
+		
+		this.frame = frame ;
+		this.frame.add(simulation);
+		this.frame.setSize(616,639);
+		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.frame.setVisible(true);
+		this.frame.addKeyListener(this); 
 		startTimer();
 	}
 	
@@ -159,6 +163,10 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 		System.out.println("Nombre d'échapés : " + nbEscaped);
 		System.out.println("Nombre d'attrapés : " + nbCaught);
 		System.out.println("FINI");
+		
+		frame.remove(simulation);
+		frame.repaint();
+		new EndGame(frame, nbCaught, nbEscaped, writeTimer());
 	}
 	
 	public void cleanLists() {

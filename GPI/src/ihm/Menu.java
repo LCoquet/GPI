@@ -55,8 +55,8 @@ public class Menu extends JPanel{
 	
 	private static final String TITLE = "Guardians" ;
 	
-	public Menu(){
-		frame = new JFrame(TITLE);
+	public Menu(JFrame f){
+		frame = f;
 		menuPanel = this ;
 		
 		nbrGuardian = 1 ;
@@ -100,6 +100,7 @@ public class Menu extends JPanel{
 		
 		printTitle = new JLabel(TITLE);
 		printTitle.setFont(new Font("Serif", Font.PLAIN, 48));
+		printTitle.setForeground(Color.WHITE);
 		c.gridx = 0 ;
 		c.gridy = 0 ;
 		c.gridwidth = 3 ;
@@ -115,6 +116,7 @@ public class Menu extends JPanel{
 		menuPanel.add(buttonSuppG, c);
 		
 		printNbG = new JLabel("Guardian : \n" + Integer.toString(nbrGuardian));
+		printNbG.setForeground(Color.WHITE);
 		c.gridx = 1 ;
 		c.gridy = 2 ;
 		menuPanel.add(printNbG, c);
@@ -136,6 +138,7 @@ public class Menu extends JPanel{
 		menuPanel.add(buttonSuppP, c);
 		
 		printNbP = new JLabel("Prisoner : \n" + Integer.toString(nbrPrisoner));
+		printNbP.setForeground(Color.WHITE);
 		c.gridx = 1 ;
 		c.gridy = 4 ;
 		menuPanel.add(printNbP, c);
@@ -240,10 +243,6 @@ public class Menu extends JPanel{
 			}
 		}
 		
-	}
-	
-	public static void main(String []args) {
-		new Menu();
 	}
 
 }
