@@ -37,7 +37,7 @@ public class Simulation extends JPanel implements Runnable, KeyListener{
 	Detector d ;
 	
 	private int timer = 0;
-	private int victoryTimer = 60000; // 30 Sec = 30 000 ms
+	private int victoryTimer = 30000; // 30 Sec = 30 000 ms
 	private boolean timeout = false;
 	
 	private ArrayList<int[]> sorties;

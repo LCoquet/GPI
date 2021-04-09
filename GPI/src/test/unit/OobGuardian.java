@@ -10,8 +10,8 @@ import processing.PrisonCreator;
 
 public class OobGuardian {
 	
-	private final static int GUARDIANSAMOUNT = 100000; // Ne pas faire 10 millions
-	private final static int PRISONERAMOUNT	 = 1;
+	private final static int GUARDIANSAMOUNT = 10000; // Ne pas faire 10 millions
+	private final static int PRISONERAMOUNT	 = 50;
 
 	public static void main(String[] args) {
 		

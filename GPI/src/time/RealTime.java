@@ -2,6 +2,12 @@ package time;
 
 import time.Time;
 
+/**
+ * @brief Timer thread for chronometer
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class RealTime implements Runnable{
 
 	private Time hour = new Time(0, 1, 0);

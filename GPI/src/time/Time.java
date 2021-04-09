@@ -1,5 +1,11 @@
 package time;
 
+/**
+ * @brief Time class for chronometer
+ * 
+ * @author CHABOT Yohan, COQUET Leo, DE SOUSA Julia, GASTEBOIS Emma, HANG Alexandre, POUPET Maria-Lorena
+ *
+ */
 public class Time {
 
 	private int value;
